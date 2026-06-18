@@ -249,6 +249,10 @@ function Server(serverConfig = {}) {
         responseComponents.body.errors = error.details || undefined;
         responseComponents.body.data = error.context;
 
+        if (error.isApplicationError && error.errorCode) {
+          responseComponents.body.code = error.errorCode;
+        }
+
         expressResponse.status(responseComponents.statusCode).json(responseComponents.body); // Todo: Add a callback config that can be used to handle this in a custom way.
       } finally {
         if (typeof handlerConfiguration.onResponseEnd === 'function') {
