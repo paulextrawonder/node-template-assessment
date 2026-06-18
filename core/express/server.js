@@ -277,6 +277,10 @@ function Server(serverConfig = {}) {
     return app(request, response, nextFunction);
   }
 
+  function use(...args) {
+    app.use(...args);
+  }
+
   function startServer() {
     app.use((_, res, __) => {
       // Global 404 Catcher
@@ -302,6 +306,7 @@ function Server(serverConfig = {}) {
     startServer,
     addHandler,
     executeRequest,
+    use,
   };
 }
 module.exports = Server;

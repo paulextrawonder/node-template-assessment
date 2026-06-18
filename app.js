@@ -21,6 +21,10 @@ const server = createServer({
   enableCors: true,
 });
 
+const setupSwagger = require('./docs/setup-swagger');
+
+setupSwagger(server);
+
 const ENDPOINT_CONFIGS = [
   {
     path: './endpoints/onboarding/',
